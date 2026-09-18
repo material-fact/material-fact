@@ -1,0 +1,139 @@
+﻿---
+import { Image } from 'astro:assets';
+import simonePortrait from '../../public/design/simone.png';
+import kylePortrait from '../../public/design/kyle.png';
+import '../styles/global.css';
+const bookingUrl = 'https://calendly.com/kyle-materialfact/30min';
+const profiles = [
+  { name: 'Simone Eiermann', role: 'Digital Product Designer', description: 'Researches complex workflows and designs digital products.', image: simonePortrait, url: 'https://www.linkedin.com/in/simone-eiermann-881ba253/' },
+  { name: 'Kyle Willis', role: 'Licensed Architect', description: 'Over a decade of experience taking building projects from design through construction in Los Angeles, CA.', image: kylePortrait, url: 'https://www.linkedin.com/in/kyle-willis-7a813894/' },
+];
+const audience = [
+  'You work with product information, specifications, quotes, orders, production, or technical support.',
+  'You lead a team and see how work moves between people, departments, and systems.',
+  'You help choose, manage, or improve the digital tools your company uses.',
+];
+const questions = [
+  { question: 'Do I need to prepare?', answer: 'No. We’re interested in work you already know well. There’s nothing to read beforehand and nothing to bring.' },
+  { question: 'Who are you looking to speak with?', answer: 'People who understand how work actually gets done inside building-product companies. You don’t need to work in software or have a particular title.' },
+  { question: 'How will what I share be used?', answer: 'We’re looking for patterns across many conversations. The research brief will not identify you, your company, or your colleagues.' },
+  { question: 'Is this a sales conversation?', answer: 'No. This is independent research. We’re asking for 30 minutes of your time and nothing more.' },
+  { question: 'Can I recommend someone else?', answer: 'Absolutely. Feel free to forward this page or introduce us to someone you think we should speak with.' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Independent research into work and digital tools at building-product companies. A 30-minute conversation with Simone and Kyle. No sales pitch." />
+    <meta name="theme-color" content="#f9f9f9" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=building-form" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=building-form" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/archivo-400.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/archivo-500.ttf" as="font" type="font/ttf" crossorigin />
+    <title>Material Fact — Research into work and digital tools</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header container"><a class="wordmark" href="/" aria-label="Material Fact home"><span>material</span><span>fact</span></a></header>
+    <main id="main" class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="inset">
+          <p class="eyebrow">Research into work and digital tools</p>
+          <h1 id="hero-title"><span class="hero-line">Understanding work and</span>{' '}<span class="hero-line">software in the</span>{' '}<span class="hero-line">building‑product industry.</span></h1>
+          <p class="hero-description">We’re speaking with people at building‑product companies about how work gets done, what works well, and what gets in the way.</p>
+          <div class="research-meta">
+            <p class="research-details">Independent research · 30 minutes · No sales pitch</p>
+            <p class="research-note">Participants will receive a short brief sharing what we learn.</p>
+          </div>
+        </div>
+        <a class="book-call" href={bookingUrl} aria-label="Book a 30-minute call on Calendly"><img src="/design/book-call.svg" width="96.331" height="85" alt="" /></a>
+      </section>
+      <section class="section about" aria-labelledby="about-title">
+        <p class="eyebrow">Who we are</p>
+        <h2 id="about-title">A digital product designer and an architect.</h2>
+        <p class="section-copy">We’re Simone and Kyle. We started Material Fact to explore how research and design could better support building‑product companies. We’re beginning with conversations like these.</p>
+        <div class="profiles">
+          {profiles.map((profile) => <article class="profile">
+            <div class:list={['portrait-frame', { 'portrait-frame--kyle': profile.name === 'Kyle Willis' }]}><Image src={profile.image} alt={profile.name} width={550} height={550} widths={[354, 550, 708]} sizes={profile.name === 'Kyle Willis' ? '(max-width: 600px) 309px, 354px' : '(max-width: 600px) 240px, 275px'} format="webp" loading="lazy" class="portrait" /></div>
+            <h3>{profile.name}</h3><p class="profile-role">{profile.role}</p><p class="profile-description">{profile.description}</p>
+            <a class="arrow-link profile-link" href={profile.url} aria-label={`${profile.name} on LinkedIn`}>LinkedIn<span class="profile-arrow" aria-hidden="true"><img src="/design/profile-arrow.svg" width="18" height="18" alt="" /></span></a>
+          </article>)}
+        </div>
+      </section>
+      <section class="section asking" aria-labelledby="asking-title">
+        <p class="eyebrow">What we’re asking</p><h2 id="asking-title">How work happens. How change happens.</h2>
+        <p class="section-copy">We’re interested in the processes you know well: what runs smoothly, where things get complicated, and how your team decides what to improve. A process you’ve improved, a system you’ve introduced, or a project that proved harder than expected is a good place to start. We’d like to understand where software helps and where it falls short.</p>
+      </section>
+      <section class="section audience" aria-labelledby="audience-title">
+        <p class="eyebrow">Who we’d like to speak with</p><h2 id="audience-title">People close to the work</h2>
+        <p class="section-copy">We’re speaking with people at building‑material and construction‑product companies. You might recognize yourself in one or more of these:</p>
+        <ol class="audience-list" role="list">{audience.map((item, i) => <li><p>{item}</p><span class="item-number" aria-hidden="true"><span>·</span>{String(i + 1).padStart(2, '0')}</span></li>)}</ol>
+      </section>
+      <section class="section receive" aria-labelledby="receive-title">
+        <p class="eyebrow">What you’ll receive</p><h2 id="receive-title">A perspective beyond your own company.</h2>
+        <p class="section-copy">We’ll share a short research brief with participants, bringing together common challenges, useful approaches, and questions that emerge from the conversations. You’re welcome to share it with your team. The brief will not identify participants or their companies.</p>
+      </section>
+      <section class="section faq" aria-labelledby="faq-title">
+        <p class="eyebrow">Common questions</p><h2 id="faq-title">A few things to know.</h2>
+        <div class="questions">{questions.map(({ question, answer }) => <article class="question"><h3>{question}</h3><p>{answer}</p></article>)}</div>
+      </section>
+      <section class="section talk" aria-labelledby="talk-title">
+        <div class="inset"><p class="eyebrow">Let’s talk</p><h2 id="talk-title">Tell us about your work.</h2>
+        <p>A 30‑minute conversation with us. No preparation needed, and no need to share confidential information. We’re here to listen, learn, and get to know people working in the industry.</p></div>
+      </section>
+      <section class="section contact" aria-labelledby="contact-title">
+        <p class="eyebrow">Contact</p><h2 id="contact-title">Want to get in touch?</h2>
+        <p class="section-copy">You don’t need to take part in the research to get in touch. If something here didn’t answer it, write to us and we’ll come back to you.</p>
+        <dl class="contact-list">
+          <div><dt class="eyebrow">Email</dt><dd><a href="mailto:hello@materialfact.io">hello@materialfact.io</a></dd></div>
+          {profiles.map((profile) => <div><dt class="eyebrow">{profile.name}</dt><dd><a class="arrow-link" href={profile.url} aria-label={`${profile.name} on LinkedIn`}>LinkedIn<img class="contact-arrow" src="/design/contact-arrow.svg" width="24" height="24" alt="" /></a></dd></div>)}
+        </dl>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-wordmark" aria-label="Material Fact"><div aria-hidden="true"><span>material</span><span>fact</span></div></div>
+      <div class="footer-details container"><p>Research for better digital tools for the building industry.</p><p>© 2026 Material Fact</p></div>
+    </footer>
+    <script>
+      const bookingButton = document.querySelector<HTMLAnchorElement>('.book-call');
+      const heroLabel = document.querySelector<HTMLElement>('.hero .eyebrow');
+
+      if (bookingButton && heroLabel) {
+        let previousOffset: number | null = null;
+        const updateBookingButton = () => {
+          // Move with the document until reaching the reference's corner position.
+          // Clamp there while scrolling farther down; reverse naturally on the way up.
+          const offset = Math.max(0, heroLabel.getBoundingClientRect().top - window.innerHeight * 0.075);
+          bookingButton.style.setProperty('--booking-scroll-offset', `${offset}px`);
+          if (offset > 0) {
+            bookingButton.classList.remove('is-settling');
+            if (previousOffset === 0) bookingButton.classList.add('is-releasing');
+          } else if (previousOffset !== null && previousOffset > 0) {
+            bookingButton.classList.remove('is-releasing');
+            bookingButton.classList.add('is-settling');
+          }
+          previousOffset = offset;
+        };
+        let updatePending = false;
+        const scheduleUpdate = () => {
+          if (updatePending) return;
+          updatePending = true;
+          requestAnimationFrame(() => {
+            updateBookingButton();
+            updatePending = false;
+          });
+        };
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('resize', scheduleUpdate);
+        window.addEventListener('pageshow', scheduleUpdate);
+        document.fonts.ready.then(scheduleUpdate);
+        updateBookingButton();
+      }
+    </script>
+  </body>
+</html>
